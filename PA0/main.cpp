@@ -4,7 +4,6 @@
 int main() {
     Eigen::Vector3f p(2.0f, 1.0f, 1.0f);
 
-    // 45 degrees to radians
     float angle = 45.0f / 180.0f * M_PI;
 
     Eigen::Matrix3f rotate;
