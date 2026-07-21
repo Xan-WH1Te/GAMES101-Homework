@@ -1,0 +1,21 @@
+# Build
+build/
+cmake-build-*/
+*.o
+*.obj
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Archive
+*.rar
+*.zip
+*.7z
