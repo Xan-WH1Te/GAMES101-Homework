@@ -18,7 +18,7 @@ My homework implementations for [GAMES101](https://sites.cs.ucsb.edu/~lingqi/tea
 | # | Topic | Status |
 |---|-------|--------|
 | PA0 | Environment Setup & Eigen Basics | ✅ |
-| PA1 | Rasterization | ⬜ |
+| PA1 | Rasterization | ✅ |
 | PA2 | Z-Buffering | ⬜ |
 | PA3 | Shading | ⬜ |
 | PA4 | Bézier Curves | ⬜ |
