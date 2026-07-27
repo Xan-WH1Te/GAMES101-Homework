@@ -24,8 +24,8 @@ public:
 
     Eigen::Vector3f getColor(float u, float v)
     {
-        auto u_img = u * width;
-        auto v_img = (1 - v) * height;
+        auto u_img = std::clamp(int(u * width), 0, width - 1);
+        auto v_img = std::clamp(int((1 - v) * height), 0, height - 1);
         auto color = image_data.at<cv::Vec3b>(v_img, u_img);
         return Eigen::Vector3f(color[0], color[1], color[2]);
     }
@@ -35,15 +35,12 @@ public:
 
         auto u_img = u * width;
         auto v_img = (1 - v) * height;
-        int u0 = std::floor(u_img);
-        int v0 = std::floor(v_img);
-        float s = u_img - u0;
-        float t = v_img - v0;
-
         int u0 = std::clamp(int(std::floor(u_img)), 0, width - 1);
         int u1 = std::clamp(u0 + 1, 0, width - 1);
         int v0 = std::clamp(int(std::floor(v_img)), 0, height - 1);
         int v1 = std::clamp(v0 + 1, 0, height - 1);
+        float s = u_img - std::floor(u_img);
+        float t = v_img - std::floor(v_img);
 
         auto p00 = image_data.at<cv::Vec3b>(v0, u0);
         Eigen::Vector3f c00(p00[0], p00[1], p00[2]);
