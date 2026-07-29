@@ -97,16 +97,20 @@ inline bool Bounds3::IntersectP(const Ray& ray, const Vector3f& invDir,
     // dirIsNeg: ray direction(x,y,z), dirIsNeg=[int(x>0),int(y>0),int(z>0)], use this to simplify your logic
     // TODO test if ray bound intersects
 
-    float t_min_x = ((dirIsNeg[0] ? pMin.x : pMax.x) - ray.origin.x) * invDir.x;
-    float t_min_y = ((dirIsNeg[1] ? pMin.y : pMax.y) - ray.origin.y) * invDir.y;    
-    float t_min_z = ((dirIsNeg[2] ? pMin.z : pMax.z) - ray.origin.z) * invDir.z;    
+    float t_min_x = (pMin.x - ray.origin.x) * invDir.x;
+    float t_max_x = (pMax.x - ray.origin.x) * invDir.x;
+    if (!dirIsNeg[0]) std::swap(t_min_x, t_max_x);
 
-    float t_max_x = ((dirIsNeg[0] ? pMax.x : pMin.x) - ray.origin.x) * invDir.x;
-    float t_max_y = ((dirIsNeg[1] ? pMax.y : pMin.y) - ray.origin.y) * invDir.y;
-    float t_max_z = ((dirIsNeg[2] ? pMax.z : pMin.z) - ray.origin.z) * invDir.z;
+    float t_min_y = (pMin.y - ray.origin.y) * invDir.y;
+    float t_max_y = (pMax.y - ray.origin.y) * invDir.y;
+    if (!dirIsNeg[1]) std::swap(t_min_y, t_max_y);
 
-    float t_enter = fmax(t_min_z,(fmax(t_min_x, t_min_y)));
-    float t_exit = fmin(t_max_z,(fmin(t_max_x, t_max_y)));
+    float t_min_z = (pMin.z - ray.origin.z) * invDir.z;
+    float t_max_z = (pMax.z - ray.origin.z) * invDir.z;
+    if (!dirIsNeg[2]) std::swap(t_min_z, t_max_z);
+
+    float t_enter = fmax(t_min_z, fmax(t_min_x, t_min_y));
+    float t_exit  = fmin(t_max_z, fmin(t_max_x, t_max_y));
 
     return t_enter < t_exit && t_exit >= 0;
 }
