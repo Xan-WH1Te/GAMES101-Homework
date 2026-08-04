@@ -25,7 +25,7 @@ My homework implementations for [GAMES101](https://sites.cs.ucsb.edu/~lingqi/tea
 | PA5 | Ray Tracing | ✅ |
 | PA6 | BVH Acceleration | ✅ |
 | PA7 | Path Tracing | ✅ |
-| PA8 | Mass-Spring Animation | ⬜ |
+| PA8 | Mass-Spring Animation | ✅ |
 
 ## Build
 
